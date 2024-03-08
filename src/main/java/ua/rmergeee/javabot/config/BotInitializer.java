@@ -1,6 +1,5 @@
 package ua.rmergeee.javabot.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -23,7 +22,7 @@ public class BotInitializer {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         try{
             telegramBotsApi.registerBot((LongPollingBot) telegramBot);
-        } catch (TelegramApiException e){
+        } catch (TelegramApiException ignored){
 
         }
     }

@@ -9,12 +9,15 @@ import java.time.LocalDateTime;
 public class MessageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    private String message;
-
+    @Column(name = "text")
+    private String text;
+    @Column(name = "date_time")
     private LocalDateTime dateTime;
 
+    @Column(name = "chat_id")
     private Long chatId;
 
     public Long getId() {
@@ -26,11 +29,11 @@ public class MessageEntity {
     }
 
     public String getMessage() {
-        return message;
+        return text;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessage(String text) {
+        this.text = text;
     }
 
     public LocalDateTime getDateTime() {
