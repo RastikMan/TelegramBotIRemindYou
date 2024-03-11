@@ -110,13 +110,11 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
     private void saveReminder(Long chatId, String textMessage, LocalDateTime dateTime) {
-        // Створення об'єкту напоминання
         MessageEntity reminderEntity = new MessageEntity();
         reminderEntity.setMessage(textMessage);
         reminderEntity.setDateTime(dateTime);
         reminderEntity.setChatId(chatId);
 
-        // Збереження напоминання в базі даних
         messageRepository.save(reminderEntity);
         scheduleReminderTask(reminderEntity);
     }
@@ -126,7 +124,6 @@ public class Bot extends TelegramLongPollingBot {
         scheduler.schedule(() -> {
             sendMessage(messageEntity.getChatId(), "Нагадую! ");
             sendMessage(messageEntity.getChatId(), "Ваше нагадування: " + messageEntity.getMessage());
-            // Опционально: видалення напоминания з бази даних після відправки
             messageRepository.delete(messageEntity);
         }, initialDelay, TimeUnit.MILLISECONDS);
     }
